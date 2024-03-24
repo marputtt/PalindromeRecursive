@@ -1,15 +1,29 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+package week6;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+import java.util.Scanner;
+
+public class Main {
+    public static boolean check_palindrome(String test){
+
+        if (test.isEmpty() || test.length() == 1){
+            return true;
+        }else {
+            if (test.charAt(0) == test.charAt(test.length() - 1)) {
+                test = test.substring(1, test.length() - 1);
+                return check_palindrome(test);
+            }
+            return false;
         }
+    }
+
+
+    public static void main (String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a word: ");
+        String test = scanner.nextLine();
+        test = test.toLowerCase();
+
+        String result = check_palindrome(test)? "a palindrome" : "not a palindrome";
+        System.out.println("The entered word is " + result);
     }
 }
